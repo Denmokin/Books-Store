@@ -6,7 +6,7 @@ import { About } from "./pages/About.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 
 export function RootCmp() {
-    const [page, setPage] = useState('home')
+    const [page, setPage] = useState('books')
 
     return <section className="app main-layout">
         <AppHeader page={page} onSetPage={setPage} />

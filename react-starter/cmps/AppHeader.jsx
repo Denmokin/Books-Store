@@ -16,7 +16,7 @@ export function AppHeader({ page = 'home', onSetPage }) {
                 <span> | </span>
                 <a href="#" className={(page === 'books') ? 'active' : ''}
                     onClick={(ev) => onSetPage('books')}>
-                    books
+                    Books
                 </a>
             </nav>
         </section>

@@ -1,5 +1,6 @@
 
 import { bookService } from "../services/book.service.js"
+import { BookList } from "../cmps/BookList.jsx"
 
 const { useState, useEffect } = React
 
@@ -19,18 +20,9 @@ export function BookIndex() {
 
     if (!books) return <p>Loading...</p>
 
-    return <section className="books">
-        <h2>David Best Books</h2>
-        <ul className='test'>
-            {books.map(book => (
-                <li key={book.id}>
-                    <div>
-                        <h3>{book.title}</h3>
-                        <h3>{book.listPrice.amount}</h3>
-                    </div>
-                </li>
-            ))}
-        </ul>
+    return <section className="book-list">
+        <h2 className='book-list__header'>The New York Times: Best Sellers</h2>
+        <BookList books={books} />
     </section>
 }
 
