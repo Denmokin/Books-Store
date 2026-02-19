@@ -6,7 +6,7 @@ export const storageService = {
     remove,
 }
 
-function query(entityType, delay = 200) {
+function query(entityType, delay = 1800) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
     return new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
@@ -16,7 +16,7 @@ function get(entityType, entityId) {
         .then(entities => {
             const entity = entities.find(entity => entity.id === entityId)
             if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
-                
+
             return entity
         })
 }

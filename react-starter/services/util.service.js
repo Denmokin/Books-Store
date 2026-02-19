@@ -3,10 +3,22 @@ export const utilService = {
     saveToStorage,
     makeId,
     makeLorem,
+    makeBookTitle,
     getRandomIntInclusive,
     getDayName,
     getMonthName,
     animateCSS
+}
+
+
+function makeBookTitle() {
+    const adjectives = ['Hidden', 'Silent', 'Golden', 'Last', 'Forgotten']
+    const nouns = ['Legacy', 'Whisper', 'Key', 'Prophecy', 'Shadow']
+
+    const adj = adjectives[Math.floor(Math.random() * adjectives.length)]
+    const noun = nouns[Math.floor(Math.random() * nouns.length)]
+
+    return 'The ' + adj + ' ' + noun
 }
 
 function makeId(length = 6) {
@@ -21,12 +33,12 @@ function makeId(length = 6) {
 }
 
 function makeLorem(size = 100) {
-    const words = ['The sky', 'above', 'the port', 'was', 'the color' ,'of nature', 'tuned', 'to', 'a live channel', 'All', 'this happened', 'more or less', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', 'a pleasure', 'to', 'burn']
+    const words = ['The sky', 'above', 'the port', 'was', 'the color', 'of nature', 'tuned', 'to', 'a live channel', 'All', 'this happened', 'more or less', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', 'a pleasure', 'to', 'burn']
     var txt = ''
     while (size > 0) {
         size--
         txt += words[Math.floor(Math.random() * words.length)]
-        if (size >= 1 ) txt += ' '
+        if (size >= 1) txt += ' '
     }
     return txt
 }
@@ -58,7 +70,7 @@ function getMonthName(date) {
     return monthNames[date.getMonth()]
 }
 
-function animateCSS(el, animation='bounce') {
+function animateCSS(el, animation = 'bounce') {
     const prefix = 'animate__'
     return new Promise((resolve, reject) => {
         const animationName = `${prefix}${animation}`
