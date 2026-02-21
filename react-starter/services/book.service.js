@@ -1,8 +1,9 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
+import { bookDB } from '../books.js'
 
 const BOOKS_KEY = 'Books_DB'
-_createBooks(3)
+_createBooks(10)
 
 export const bookService = {
     query, // Request 
@@ -58,15 +59,8 @@ function _createBooks(amount) {
     if (!books || !books.length) {
         books = []
         for (var i = 0; i < amount; i++) {
-            books.push(
-                {
-                    id: utilService.makeId(),
-                    title: utilService.makeBookTitle(),
-                    listPrice: {
-                        amount: utilService.getRandomIntInclusive(15, 80),
-                    }
-                }
-            )
+            let book = bookDB.getRandBook()
+            books.push(book)
         }
         utilService.saveToStorage(BOOKS_KEY, books)
     }

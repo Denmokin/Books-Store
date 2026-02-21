@@ -7,6 +7,7 @@ export const utilService = {
     getRandomIntInclusive,
     getDayName,
     getMonthName,
+    toCap,
     animateCSS
 }
 
@@ -68,6 +69,12 @@ function getMonthName(date) {
         'July', 'August', 'September', 'October', 'November', 'December'
     ]
     return monthNames[date.getMonth()]
+}
+
+
+
+function toCap(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 function animateCSS(el, animation = 'bounce') {

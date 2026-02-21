@@ -1,10 +1,14 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 html {
-    color-scheme: light dark;
+    /* color-scheme: light dark; */
 }
+
+body {}
 
 @media (prefers-reduced-motion: no-preference) {
     html {
@@ -13,23 +17,33 @@ html {
     }
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0 0 1em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
     text-wrap: balance;
 }
 
 p {
     max-width: 65ch;
-    margin: 0 0 1em;
+    margin: 0 0;
     text-wrap: pretty;
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
     display: block;
     max-width: 100%;
 }
 
-ul, ol {
+ul,
+ol {
     padding: 0;
     list-style: none;
 }
@@ -39,7 +53,10 @@ a[class] {
     color: inherit;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
     max-width: 100%;
     font: inherit;
 }

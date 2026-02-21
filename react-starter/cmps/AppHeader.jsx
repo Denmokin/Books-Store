@@ -18,7 +18,11 @@ export function AppHeader({ page = 'home', onSetPage }) {
                     onClick={(ev) => onSetPage('books')}>
                     Books
                 </a>
+                <span> | </span>
+                <button onClick={() => localStorage.clear()}>Clear LocalStorage</button>
             </nav>
         </section>
     </header>
 }
+
+

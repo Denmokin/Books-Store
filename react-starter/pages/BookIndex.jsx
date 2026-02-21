@@ -21,7 +21,7 @@ export function BookIndex() {
     if (!books) return <p>Loading...</p>
 
     return <section className="book-list">
-        <h2 className='book-list__header'>The New York Times: Best Sellers</h2>
+        <h1 className='book-list__header'>The New York Times: Best Sellers</h1>
         <BookList books={books} />
     </section>
 }
