@@ -1,9 +1,8 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-import { bookDB } from '../books.js'
 
 const BOOKS_KEY = 'Books_DB'
-_createBooks(10)
+_createBooks(20)
 
 export const bookService = {
     query, // Request 
@@ -16,13 +15,14 @@ export const bookService = {
 function query(filterBy = {}) {
     return storageService.query(BOOKS_KEY)
         .then(books => {
+            console.log('filterBy: ', filterBy)
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                regExp = books.filter(book => regExp.test(book.title))
+                books = books.filter(book => regExp.test(book.title))
             }
 
             if (filterBy.price) {
-                books.filer(book => book.listPrice.amount < filterBy.price)
+                books = books.filter(book => book.listPrice.amount <= filterBy.price)
             }
 
             return books
@@ -55,15 +55,29 @@ function getDefaultFilter(filterBy = { txt: '', price: 0 }) {
 
 
 function _createBooks(amount) {
-    let books = utilService.loadFromStorage(BOOKS_KEY)
-    if (!books || !books.length) {
-        books = []
-        for (var i = 0; i < amount; i++) {
-            let book = bookDB.getRandBook()
-            books.push(book)
+    const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+    const books = []
+    for (let i = 0; i < amount; i++) {
+        const book = {
+            id: utilService.makeId(),
+            title: utilService.makeLorem(2),
+            subtitle: utilService.makeLorem(4),
+            authors: [
+                utilService.makeLorem(1)
+            ],
+            publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+            description: utilService.makeLorem(20),
+            pageCount: utilService.getRandomIntInclusive(20, 600),
+            categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+            thumbnail: `https://www.coding-academy.org/books-photos/${i + 1}.jpg`,
+            language: "en",
+            listPrice: {
+                amount: utilService.getRandomIntInclusive(30, 200),
+                currencyCode: "EUR",
+                isOnSale: Math.random() > 0.7
+            }
         }
-        utilService.saveToStorage(BOOKS_KEY, books)
+        books.push(book)
     }
-
-
+    utilService.saveToStorage(BOOKS_KEY, books)
 }

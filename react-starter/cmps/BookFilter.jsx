@@ -1,18 +1,40 @@
-import { BookPreview } from "./BookPreview.jsx"
+const { useState, useEffect } = React
 
-export function BookList({ books }) {
+export function BookFilter({ filterBy, setFilterBy }) {
 
-    return <ul className='book-list__items'>
-        {books.map(book => (
-            <li className='book-list__item' key={book.id}>
-                <BookPreview book={book} />
-                <div className='book-list__actions'>
-                    <button>Read More</button>
-                </div>
-            </li>
-        ))}
-    </ul>
+    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
+    function handleChange(ev) {
+        const { type, name, value } = ev.target
+
+        setFilterByToEdit(prev => (
+            { ...prev, [name]: type === 'text' ? value : +value }
+        ))
+    }
+
+    useEffect(() => {
+        setFilterBy(filterByToEdit)
+    }, [filterByToEdit])
+
+
+    return <section className="book-filter">
+        <p>Serch:</p>
+        <input
+            value={filterByToEdit.txt}
+            onChange={ev => handleChange(ev)}
+            placeholder="Search by name"
+            type="text"
+            name="txt"
+        />
+        <p>Price Filter:</p>
+        <input
+            value={filterByToEdit.price || ''}
+            onChange={ev => handleChange(ev)}
+            placeholder="Search by Price"
+            type="number"
+            name="price"
+        />
+    </section>
 
 }
 

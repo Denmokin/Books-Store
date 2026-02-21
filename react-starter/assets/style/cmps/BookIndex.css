@@ -10,6 +10,10 @@
     h1 {
         font-size: 2rem;
     }
+
+    button {
+        cursor: pointer;
+    }
 }
 
 .book-list ul {
@@ -48,6 +52,18 @@
     aspect-ratio: 1/1;
 
     cursor: pointer;
+}
+
+.book-filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--clr2);
 }
 
 
