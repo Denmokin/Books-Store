@@ -31,7 +31,7 @@ function query(filterBy = {}) {
 
 function get(bookId) {
     return storageService.get(BOOKS_KEY, bookId)
-        .then(book => book.find(book => book.id === bookId))
+        .then(book => book)
 }
 
 
@@ -56,6 +56,7 @@ function getDefaultFilter(filterBy = { txt: '', price: 0 }) {
 
 function _createBooks(amount) {
     const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+    const currency = ['EUR', 'USD', 'ILS']
     const books = []
     for (let i = 0; i < amount; i++) {
         const book = {
@@ -73,7 +74,7 @@ function _createBooks(amount) {
             language: "en",
             listPrice: {
                 amount: utilService.getRandomIntInclusive(30, 200),
-                currencyCode: "EUR",
+                currencyCode: currency[utilService.getRandomIntInclusive(0, 2)],
                 isOnSale: Math.random() > 0.7
             }
         }
