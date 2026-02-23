@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 
 const BOOKS_KEY = 'Books_DB'
-_createBooks(20)
+utilService.loadFromStorage(BOOKS_KEY) || _createBooks(20)
 
 export const bookService = {
     query, // Request 
@@ -24,7 +24,6 @@ function query(filterBy = {}) {
             if (filterBy.price) {
                 books = books.filter(book => book.listPrice.amount <= filterBy.price)
             }
-
             return books
         })
 }
@@ -61,13 +60,13 @@ function _createBooks(amount) {
     for (let i = 0; i < amount; i++) {
         const book = {
             id: utilService.makeId(),
-            title: utilService.makeLorem(2),
-            subtitle: utilService.makeLorem(4),
+            title: utilService.makeBookTitle(),
+            subtitle: utilService.makeLorem(5),
             authors: [
-                utilService.makeLorem(1)
+                utilService.makeAuthor()
             ],
             publishedDate: utilService.getRandomIntInclusive(1950, 2024),
-            description: utilService.makeLorem(20),
+            description: utilService.makeLorem(100),
             pageCount: utilService.getRandomIntInclusive(20, 600),
             categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
             thumbnail: `https://www.coding-academy.org/books-photos/${i + 1}.jpg`,

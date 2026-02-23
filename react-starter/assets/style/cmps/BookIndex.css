@@ -71,33 +71,62 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
-
     padding: 1rem;
     border: 1px solid var(--clr2);
-
-    .book-details {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
     overflow: hidden;
+
+    .book-selected__on-sale-ribbon {
+        position: absolute;
+        top: 25px;
+        right: -80px;
+        rotate: 45deg;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--clr0);
+        padding: 1rem 5rem;
+        background-color: var(--clr2);
+        z-index: 10;
+    }
 }
 
-.on-sale {
-    position: absolute;
-    top: 25px;
-    right: -80px;
-    rotate: 45deg;
+.book-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
+    .book-details__headings {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--clr0);
-    
-    
-    padding: 1rem 5rem;
-    background-color: var(--clr2);
+    .book-details__title {
+        margin: 0;
+    }
+
+    .book-details__price--expensive {
+        color: red;
+    }
+
+    .book-details__price--cheap {
+        color: green;
+    }
+
+    .book-details__tags {
+        display: flex;
+        gap: 1rem;
+
+        .book-details__tag {
+            border: 1px solid var(--clr1);
+            border-radius: 5px;
+            padding: 0.2rem 1rem;
+        }
+    }
+
+    .book-details__read-more {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }
 
 .heart-icon {

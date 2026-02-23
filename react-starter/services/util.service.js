@@ -3,6 +3,7 @@ export const utilService = {
     saveToStorage,
     makeId,
     makeLorem,
+    makeAuthor,
     makeBookTitle,
     getRandomIntInclusive,
     getDayName,
@@ -33,15 +34,48 @@ function makeId(length = 6) {
     return txt
 }
 
-function makeLorem(size = 100) {
-    const words = ['The sky', 'above', 'the port', 'was', 'the color', 'of nature', 'tuned', 'to', 'a live channel', 'All', 'this happened', 'more or less', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', 'a pleasure', 'to', 'burn']
-    var txt = ''
-    while (size > 0) {
-        size--
-        txt += words[Math.floor(Math.random() * words.length)]
-        if (size >= 1) txt += ' '
+function makeLorem(wordCount = 100) {
+    const words = [
+        'the', 'sky', 'above', 'the', 'port', 'was', 'the', 'color', 'of', 'nature', 'tuned', 'to', 'a', 'live', 'channel',
+        'all', 'this', 'happened', 'more', 'or', 'less', 'I', 'had', 'the', 'story', 'bit', 'by', 'bit', 'from', 'various',
+        'people', 'and', 'as', 'generally', 'happens', 'in', 'such', 'cases', 'each', 'time', 'it', 'was', 'a', 'different',
+        'story', 'a', 'pleasure', 'to', 'burn', 'it', 'was', 'a', 'bright', 'cold', 'day', 'in', 'April', 'and', 'the',
+        'clocks', 'were', 'striking', 'thirteen'
+    ];
+
+    let remaining = wordCount
+    let result = []
+
+    while (remaining > 0) {
+        let sentenceLength = Math.min(remaining, Math.floor(Math.random() * 11) + 4)
+        let sentence = []
+
+        for (let i = 0; i < sentenceLength; i++) {
+            sentence.push(words[Math.floor(Math.random() * words.length)])
+        }
+
+        let sentenceStr = sentence.join(' ')
+        sentenceStr = sentenceStr.charAt(0).toUpperCase() + sentenceStr.slice(1) + '.'
+      
+        result.push(sentenceStr)
+        remaining -= sentenceLength
+
+        if (Math.random() > 0.8 && remaining > 0) {
+            result.push('\n\n')
+        }
     }
-    return txt
+
+    return result.join(' ').replace(/ \n\n /g, '\n\n');
+}
+
+function makeAuthor() {
+    const firsts = ['George', 'William', 'Agatha', 'Ernest', 'Virginia', 'Philip', 'Ursula']
+    const lasts = ['Orwell', 'Gibson', 'Christie', 'Hemingway', 'Woolf', 'Dick', 'Le Guin']
+
+    const f = firsts[Math.floor(Math.random() * firsts.length)]
+    const l = lasts[Math.floor(Math.random() * lasts.length)]
+
+    return `${f} ${l}`
 }
 
 function getRandomIntInclusive(min, max) {
