@@ -1,0 +1,138 @@
+.book-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 2rem;
+
+    padding: 2rem;
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        cursor: pointer;
+    }
+}
+
+.book-list ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+.book-list li {
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 0.5rem;
+    border: 1px solid var(--clr2);
+}
+
+.book-list__item {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+}
+
+.book-list__item-details {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.book-list__item-btn-fav {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+
+    cursor: pointer;
+}
+
+.book-filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--clr2);
+}
+
+.book-selected {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    border: 1px solid var(--clr2);
+    overflow: hidden;
+
+    .book-selected__on-sale-ribbon {
+        position: absolute;
+        top: 25px;
+        right: -80px;
+        rotate: 45deg;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--clr0);
+        padding: 1rem 5rem;
+        background-color: var(--clr2);
+        z-index: 10;
+    }
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .book-details__headings {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .book-details__title {
+        margin: 0;
+    }
+
+    .book-details__price--expensive {
+        color: red;
+    }
+
+    .book-details__price--cheap {
+        color: green;
+    }
+
+    .book-details__tags {
+        display: flex;
+        gap: 1rem;
+
+        .book-details__tag {
+            border: 1px solid var(--clr1);
+            border-radius: 5px;
+            padding: 0.2rem 1rem;
+        }
+    }
+
+    .book-details__read-more {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+.heart-icon {
+    background-image: url('/assets/img/icons/heart-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-size: 1.5rem;
+}
