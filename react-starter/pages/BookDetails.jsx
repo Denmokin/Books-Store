@@ -11,7 +11,7 @@ export function BookDetails({ book, setSelectedBook }) {
         setIsLongDesc(prev => !prev)
     }
 
-    const description = isLongDesc ? book.description : book.description.slice(0, 100) + '....'
+    const description = isLongDesc ? book.description : book.description.slice(0, 200) + '....'
     const linkText = isLongDesc ? 'Read Less' : 'Read More'
 
 

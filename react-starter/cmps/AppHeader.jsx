@@ -1,28 +1,21 @@
-export function AppHeader({ page = 'home', onSetPage }) {
+const { NavLink } = ReactRouterDOM
+
+export function AppHeader() {
 
     return <header className="app-header full main-layout">
         <section className="header-container">
             <h1>David's Book Store</h1>
             <nav className='app-nav'>
-                <a href="#" className={(page === 'home') ? 'active' : ''}
-                    onClick={(ev) => onSetPage('home')}>
-                    Home
-                </a>
+                <NavLink to='/'>Home</NavLink>
                 <span> | </span>
-                <a href="#" className={(page === 'about') ? 'active' : ''}
-                    onClick={(ev) => onSetPage('about')}>
-                    About
-                </a>
+                <NavLink to='/about'>About</NavLink>
                 <span> | </span>
-                <a href="#" className={(page === 'books') ? 'active' : ''}
-                    onClick={(ev) => onSetPage('books')}>
-                    Books
-                </a>
+                <NavLink to='/book'>Books</NavLink>
                 <span> | </span>
                 <button onClick={() => localStorage.clear()}>Clear LocalStorage</button>
-            </nav>
-        </section>
-    </header>
+            </nav >
+        </section >
+    </header >
 }
 
 
