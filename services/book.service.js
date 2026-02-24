@@ -24,6 +24,10 @@ function query(filterBy = {}) {
             if (filterBy.price) {
                 books = books.filter(book => book.listPrice.amount <= filterBy.price)
             }
+
+            if (filterBy.diff) {
+                books = books.filter(book => _pageFilterCount(filterBy.diff, book.pageCount))
+            }
             return books
         })
 }
@@ -47,10 +51,9 @@ function save(book) {
     }
 }
 
-function getDefaultFilter(filterBy = { txt: '', price: 0 }) {
-    return { txt: filterBy.txt, price: filterBy.price }
+function getDefaultFilter(filterBy = { txt: '', price: 0, diff: '' }) {
+    return { txt: filterBy.txt, price: filterBy.price, diff: filterBy.diff }
 }
-
 
 
 function _createBooks(amount) {
@@ -80,4 +83,19 @@ function _createBooks(amount) {
         books.push(book)
     }
     utilService.saveToStorage(BOOKS_KEY, books)
+}
+
+
+function _pageFilterCount(type, pages) {
+    switch (type) {
+        case 'serious':
+            if (pages >= 500) return true;
+            break;
+        case 'decent':
+            if (pages > 100) return true;
+            break;
+        case 'light':
+            if (pages <= 100) return true;
+            break;
+    }
 }
