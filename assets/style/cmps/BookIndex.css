@@ -18,9 +18,13 @@
 
 .book-list ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    justify-content: center;
+    justify-items: center;
     gap: 1rem;
+
     width: 100%;
+    margin: 0 auto;
 }
 
 .book-list li {
