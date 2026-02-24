@@ -1,11 +1,24 @@
-import { utilService } from "../services/util.service.js"
-
 const { useState, useEffect } = React
+const { Link, useParams } = ReactRouterDOM
 
-export function BookDetails({ book, setSelectedBook }) {
+import { utilService } from "../services/util.service.js"
+import { bookService } from "../services/book.service.js"
 
+export function BookDetails() {
 
     const [isLongDesc, setIsLongDesc] = useState(false)
+    const [book, setBook] = useState(null)
+    const params = useParams()
+
+    useEffect(() => {
+        bookService.get(params.id)
+            .then(setBook)
+    }, [])
+
+
+    if (!book) return <div className="loader">
+        <img src="./assets/img/loader.svg" alt="A loader." />
+    </div>
 
     function onToggleReadMore() {
         setIsLongDesc(prev => !prev)
@@ -13,8 +26,6 @@ export function BookDetails({ book, setSelectedBook }) {
 
     const description = isLongDesc ? book.description : book.description.slice(0, 200) + '....'
     const linkText = isLongDesc ? 'Read Less' : 'Read More'
-
-
 
     return <article className='book-selected'>
         <img className='book-selected__thumbnail' src={book.thumbnail} />
@@ -42,9 +53,11 @@ export function BookDetails({ book, setSelectedBook }) {
                     {linkText}
                 </span>
             </p>
-            <button className='book-details__btn book-details__btn--back' onClick={() => setSelectedBook(null)}>
-                Back
-            </button>
+            <div className='book-details__buttons' >
+                <Link to='/book'>
+                    <button className='btn'>Back</button>
+                </Link>
+            </div>
         </div>
         {book.listPrice.isOnSale && <div className='book-selected__on-sale-ribbon'>ON SALE</div>}
     </article>

@@ -1,24 +1,14 @@
-import { bookService } from "../services/book.service.js"
+const { Link } = ReactRouterDOM
+
 import { BookPreview } from "./BookPreview.jsx"
 
-const { useState, useEffect } = React
-
-export function BookList({ books, setSelectedBook }) {
-
-    function openBookDetails(bookId) {
-        bookService.get(bookId).then(setSelectedBook)
-    }
-
-    // useEffect(() => {
-
-    // }, [])
-
+export function BookList({ books }) {
     return <ul className='book-list__items'>
         {books.map(book => (
             <li className='book-list__item' key={book.id}>
                 <BookPreview book={book} />
                 <div className='book-list__actions'>
-                    <button onClick={() => openBookDetails(book.id)}>Details</button>
+                    <Link to={`/book/${book.id}`}><button className='btn'>Details</button></Link>
                 </div>
             </li>
         ))}

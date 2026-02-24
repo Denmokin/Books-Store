@@ -25,7 +25,9 @@ export function BookIndex() {
             .then(setBooks)
     }
 
-    if (!books) return <p>Loading...</p>
+    if (!books) return <div className="loader">
+        <img src="./assets/img/loader.svg" alt="A loader." />
+    </div>
 
     return <section className="book-list">
         <h1 className='book-list__header'>The New York Times: Best Sellers</h1>

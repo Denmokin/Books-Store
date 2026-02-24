@@ -71,6 +71,12 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
+
+    width: fit-content;
+    height: 100%;
+
+    justify-self: center;
+
     padding: 1rem;
     border: 1px solid var(--clr2);
     overflow: hidden;
@@ -92,9 +98,13 @@
 .book-details {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    /* align-content: baseline; */
     gap: 1rem;
 
+
     .book-details__headings {
+        align-self: baseline;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
@@ -105,14 +115,18 @@
     }
 
     .book-details__price--expensive {
+        align-self: baseline;
         color: red;
     }
 
     .book-details__price--cheap {
+        align-self: baseline;
         color: green;
     }
 
     .book-details__tags {
+        align-self: baseline;
+
         display: flex;
         gap: 1rem;
 
@@ -124,8 +138,16 @@
     }
 
     .book-details__read-more {
+        align-self: baseline;
+
         cursor: pointer;
         text-decoration: underline;
+    }
+
+    .book-details__buttons {
+        display: grid;
+        align-items: end;
+        height: 100%;
     }
 }
 
@@ -135,4 +157,12 @@
     background-position: center;
 
     background-size: 1.5rem;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50vh;
 }
