@@ -70,13 +70,16 @@
     border: 1px solid var(--clr2);
 }
 
+
+.book-author {
+    text-decoration: underline;
+}
+
 .book-selected {
     position: relative;
     display: flex;
-    justify-content: center;
     gap: 2rem;
 
-    width: fit-content;
     height: 100%;
 
     justify-self: center;
@@ -110,8 +113,8 @@
     .book-details__headings {
         align-self: baseline;
         display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+        author flex-direction: column;
+        gap: 0.1rem;
     }
 
     .book-details__title {
