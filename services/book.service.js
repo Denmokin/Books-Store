@@ -15,18 +15,10 @@ export const bookService = {
 function query(filterBy = {}) {
     return storageService.query(BOOKS_KEY)
         .then(books => {
-<<<<<<< HEAD
-=======
-            console.log('filterBy: ', filterBy)
->>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 books = books.filter(book => regExp.test(book.title))
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
             if (filterBy.price) {
                 books = books.filter(book => book.listPrice.amount <= filterBy.price)
             }
@@ -103,9 +95,6 @@ function _pageFilterCount(type, pages) {
         case 'light':
             if (pages <= 100) return true;
             break;
-<<<<<<< HEAD
         default: ''
-=======
->>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
     }
 }

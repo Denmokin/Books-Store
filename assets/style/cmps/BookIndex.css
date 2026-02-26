@@ -42,15 +42,12 @@
     gap: 1rem;
 }
 
-<<<<<<< HEAD
 .book-list__actions {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
 }
 
-=======
->>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
 .book-list__item-details {
     display: grid;
     gap: 0.5rem;
@@ -122,13 +119,8 @@
     .book-details__headings {
         align-self: baseline;
         display: flex;
-<<<<<<< HEAD
         flex-direction: column;
         gap: 0.2rem;
-=======
-        author flex-direction: column;
-        gap: 0.1rem;
->>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
     }
 
     .book-details__title {
@@ -167,16 +159,11 @@
 
     .book-details__buttons {
         display: grid;
-<<<<<<< HEAD
         grid-auto-flow: column;
         align-items: end;
         gap: 1rem;
         height: 100%;
         width: fit-content;
-=======
-        align-items: end;
-        height: 100%;
->>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
     }
 }
 
@@ -194,7 +181,6 @@
     justify-content: center;
 
     height: 50vh;
-<<<<<<< HEAD
 }
 
 .book-edit {
@@ -215,6 +201,4 @@
         justify-content: center;
         gap: 1rem;
     }
-=======
->>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
 }
