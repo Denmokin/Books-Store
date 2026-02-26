@@ -1,10 +1,15 @@
 const { useState, useEffect } = React
+<<<<<<< HEAD
 const { Link, useParams, useNavigate } = ReactRouterDOM
+=======
+const { Link, useParams } = ReactRouterDOM
+>>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
 
 import { utilService } from "../services/util.service.js"
 import { bookService } from "../services/book.service.js"
 
 export function BookDetails() {
+<<<<<<< HEAD
     const [isLongDesc, setIsLongDesc] = useState(false)
     const [book, setBook] = useState(null)
     const params = useParams()
@@ -14,6 +19,12 @@ export function BookDetails() {
     useEffect(() => {
         bookService.query()
     }, [])
+=======
+
+    const [isLongDesc, setIsLongDesc] = useState(false)
+    const [book, setBook] = useState(null)
+    const params = useParams()
+>>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
 
     useEffect(() => {
         bookService.get(params.id)
@@ -25,7 +36,10 @@ export function BookDetails() {
         <img src="./assets/img/loader.svg" alt="A loader." />
     </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
     function onToggleReadMore() {
         setIsLongDesc(prev => !prev)
     }
@@ -69,11 +83,14 @@ export function BookDetails() {
                 <Link to='/book'>
                     <button className='btn'>Back</button>
                 </Link>
+<<<<<<< HEAD
                 <button onClick={() => navigate(`/book/edit/${book.id}`, {
                     state: {
                         page: 'bookDetails'
                     }
                 })} className='btn'>Edit Book</button>
+=======
+>>>>>>> 4fdde8a2db3c932f0c965a3392f5c3dbfa2140d4
             </div>
         </div>
         {book.listPrice.isOnSale && <div className='book-selected__on-sale-ribbon'>ON SALE</div>}
