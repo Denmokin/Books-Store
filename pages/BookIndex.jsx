@@ -12,16 +12,17 @@ export function BookIndex() {
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
     const [selectedBook, setSelectedBook] = useState(null)
 
+
     useEffect(() => {
         loadBooks()
     }, [filterBy])
 
     useEffect(() => {
-        loadBooks()
+        if (selectedBook === null) loadBooks()
     }, [selectedBook])
 
     function loadBooks() {
-        return bookService.query(filterBy)
+        bookService.query(filterBy)
             .then(setBooks)
     }
 
@@ -31,7 +32,6 @@ export function BookIndex() {
 
     return <section className="book-list">
         <h1 className='book-list__header'>The New York Times: Best Sellers</h1>
-
         {!selectedBook && <React.Fragment>
             <BookFilter
                 filterBy={filterBy}

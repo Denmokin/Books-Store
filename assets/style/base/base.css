@@ -1,7 +1,7 @@
 .btn {
     color: var(--clr0);
     font-size: 1.2rem;
-    padding: 0.2rem 2rem;
+    padding: 0.2rem 1rem;
 
     border: 0;
     border-radius: 5px;
@@ -12,7 +12,4 @@
     &:hover {
         background-color: var(--clr1);
     }
-}
-
-main {
 }

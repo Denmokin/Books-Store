@@ -6,6 +6,7 @@ import { Home } from "./pages/Home.jsx"
 import { About } from "./pages/About.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { BookDetails } from "./pages/BookDetails.jsx"
+import { BookEdit } from "./pages/BookEdit.jsx"
 
 export function RootCmp() {
 
@@ -18,6 +19,7 @@ export function RootCmp() {
                     <Route path='/about' element={<About />} />
                     <Route path='/book' element={<BookIndex />} />
                     <Route path='/book/:id' element={<BookDetails />} />
+                    <Route path='/book/edit/:id' element={<BookEdit />} />
                 </Routes>
             </main>
         </section>
