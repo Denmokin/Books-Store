@@ -1,14 +1,19 @@
 const { useState, useEffect } = React
-const { Link, useParams } = ReactRouterDOM
+const { Link, useParams, useNavigate } = ReactRouterDOM
 
 import { utilService } from "../services/util.service.js"
 import { bookService } from "../services/book.service.js"
 
 export function BookDetails() {
-
     const [isLongDesc, setIsLongDesc] = useState(false)
     const [book, setBook] = useState(null)
     const params = useParams()
+    const navigate = useNavigate()
+
+
+    useEffect(() => {
+        bookService.query()
+    }, [])
 
     useEffect(() => {
         bookService.get(params.id)
@@ -19,6 +24,7 @@ export function BookDetails() {
     if (!book) return <div className="loader">
         <img src="./assets/img/loader.svg" alt="A loader." />
     </div>
+
 
     function onToggleReadMore() {
         setIsLongDesc(prev => !prev)
@@ -38,12 +44,13 @@ export function BookDetails() {
 
             <div className='book-details__headings'>
                 <h2 className='book-details__title'>{utilService.toCap(book.title)}</h2>
-                <h3 className='book-details__subtitle'>{utilService.toCap(book.subtitle)}</h3>
+                <p className='book-details__subtitle'>{utilService.toCap(book.subtitle)}</p>
             </div>
 
-            <p className={`book-details__price book-details__price--${_priceClass(book.listPrice.amount)}`}>
-                Price: {_currencyChange(book.listPrice)}
+            <p className={'book-details__author'}>
+                By <span className='book-author'>{book.authors[0]}</span>
             </p>
+
 
             <p className='book-details__description'>
                 {description}
@@ -53,10 +60,20 @@ export function BookDetails() {
                     {linkText}
                 </span>
             </p>
+
+            <p className={`book-details__price book-details__price--${_priceClass(book.listPrice.amount)}`}>
+                Price: {_currencyChange(book.listPrice)}
+            </p>
+
             <div className='book-details__buttons' >
                 <Link to='/book'>
                     <button className='btn'>Back</button>
                 </Link>
+                <button onClick={() => navigate(`/book/edit/${book.id}`, {
+                    state: {
+                        page: 'bookDetails'
+                    }
+                })} className='btn'>Edit Book</button>
             </div>
         </div>
         {book.listPrice.isOnSale && <div className='book-selected__on-sale-ribbon'>ON SALE</div>}
@@ -65,7 +82,7 @@ export function BookDetails() {
 
 function _priceClass(price) {
     if (price < 60) return 'cheap'
-    if (price < 150) return 'expensive'
+    if (price > 150) return 'expensive'
 
 }
 

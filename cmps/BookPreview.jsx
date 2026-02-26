@@ -7,7 +7,7 @@ export function BookPreview({ book }) {
         <h3 className='book-list__item-name'>{utilService.toCap(book.title)}</h3>
         <div className="book-list__item-details">
             <p className='book-list__item-price'>Price: {_currencyChange(book.listPrice)}</p>
-            <p className='book-list__item-author'>By {book.authors[0]}</p>
+            <p className='book-list__item-author'>By <span className='book-author'>{book.authors[0]}</span></p>
         </div>
         <div className='book-list__item-btn-fav heart-icon'></div>
     </article>
