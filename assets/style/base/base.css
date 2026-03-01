@@ -1,6 +1,6 @@
 .btn {
     color: var(--clr0);
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 0.2rem 1rem;
 
     border: 0;
@@ -11,5 +11,11 @@
 
     &:hover {
         background-color: var(--clr1);
+    }
+
+    &.remove {
+        background-color: var(--clr4);
+        margin-left: auto;
+        padding: 0.2rem 0.5rem;
     }
 }

@@ -32,7 +32,10 @@ function query(filterBy = {}) {
 
 function get(bookId) {
     return storageService.get(BOOKS_KEY, bookId)
-        .then(book => book)
+        .then(book => {
+            book = _setNextPrevBookId(book)
+            return book
+        })
 }
 
 
@@ -97,4 +100,15 @@ function _pageFilterCount(type, pages) {
             break;
         default: ''
     }
+}
+
+function _setNextPrevBookId(book) {
+    return storageService.query(BOOKS_KEY).then((books) => {
+        const bookIdx = books.findIndex(currBook => currBook.id === book.id)
+        const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+        const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
+        book.nextBookId = nextBook.id
+        book.prevBookId = prevBook.id
+        return book
+    })
 }

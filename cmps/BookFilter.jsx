@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function BookFilter({ filterBy, setFilterBy }) {
+export function BookFilter({ filterBy, setFilterBy, clearFilters }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
@@ -48,6 +48,7 @@ export function BookFilter({ filterBy, setFilterBy }) {
             <option value='decent'>Decent Reading</option>
             <option value='light' >Light Reading</option>
         </select>
+        <button onClick={() => setFilterByToEdit(clearFilters)}>Clear Filters</button>
     </section>
 
 }

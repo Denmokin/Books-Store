@@ -1,7 +1,7 @@
 const { Link, useNavigate } = ReactRouterDOM
 import { BookPreview } from "./BookPreview.jsx"
 
-export function BookList({ books }) {
+export function BookList({ books, onRemoveBook }) {
     const navigate = useNavigate()
     return <ul className='book-list__items'>
         {books.map(book => (
@@ -15,6 +15,7 @@ export function BookList({ books }) {
                             page: 'book'
                         }
                     })} className='btn'>Edit</button>
+                    <button className="btn remove" onClick={() => onRemoveBook(book.id)}>X</button>
                 </div>
             </li>
         ))}

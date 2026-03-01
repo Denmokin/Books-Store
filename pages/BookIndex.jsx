@@ -25,6 +25,10 @@ export function BookIndex() {
             .then(setBooks)
     }
 
+    function onRemoveBook(bookId) {
+        bookService.remove(bookId).then(() => loadBooks())
+    }
+
     if (!books) return <div className="loader">
         <img src="./assets/img/loader.svg" alt="A loader." />
     </div>
@@ -35,9 +39,11 @@ export function BookIndex() {
             <BookFilter
                 filterBy={filterBy}
                 setFilterBy={setFilterBy}
+                clearFilters={bookService.getDefaultFilter()}
             />
             <BookList
                 setSelectedBook={setSelectedBook}
+                onRemoveBook={onRemoveBook}
                 books={books}
             />
         </React.Fragment>

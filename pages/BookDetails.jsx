@@ -7,19 +7,24 @@ import { bookService } from "../services/book.service.js"
 export function BookDetails() {
     const [isLongDesc, setIsLongDesc] = useState(false)
     const [book, setBook] = useState(null)
+    const [noBook, setNoBook] = useState(false)
+
     const params = useParams()
     const navigate = useNavigate()
 
-
-    useEffect(() => {
-        bookService.query()
-    }, [])
-
-    useEffect(() => {
+     useEffect(() => {
         bookService.get(params.id)
             .then(setBook)
-    }, [])
+            .catch(() => setNoBook(true))
+    }, [params.id])
 
+
+    if (noBook) return <div className="error-no-book">
+        <p>Book is not found</p>
+        <Link to='/book'>
+            <button className='btn'>Back</button>
+        </Link>
+    </div>
 
     if (!book) return <div className="loader">
         <img src="./assets/img/loader.svg" alt="A loader." />
@@ -73,6 +78,15 @@ export function BookDetails() {
                         page: 'bookDetails'
                     }
                 })} className='btn'>Edit Book</button>
+
+                <div className="prev-next-btns">
+                    <Link to={`/book/${book.prevBookId}`}>
+                        <button className='btn'>{'<'}</button>
+                    </Link>
+                    <Link to={`/book/${book.nextBookId}`}>
+                        <button className='btn'>{'>'}</button>
+                    </Link>
+                </div>
             </div>
         </div>
         {book.listPrice.isOnSale && <div className='book-selected__on-sale-ribbon'>ON SALE</div>}
