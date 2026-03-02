@@ -2,6 +2,8 @@ const { useState, useEffect } = React
 const { Link, useParams, useNavigate, useLocation } = ReactRouterDOM
 
 import { bookService } from "../services/book.service.js"
+import { eventBus, showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
+
 
 export function BookEdit() {
 
@@ -44,6 +46,7 @@ export function BookEdit() {
         bookService.save(book)
             .then(() => {
                 navigate(pageNav)
+                showSuccessMsg(`Book ${book.id} Saved`)
             })
     }
 

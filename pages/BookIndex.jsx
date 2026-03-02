@@ -1,10 +1,11 @@
+const { useState, useEffect } = React
 
 import { bookService } from "../services/book.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
 import { BookDetails } from "./BookDetails.jsx"
+import { eventBus, showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
-const { useState, useEffect } = React
 
 export function BookIndex() {
 
@@ -26,7 +27,15 @@ export function BookIndex() {
     }
 
     function onRemoveBook(bookId) {
-        bookService.remove(bookId).then(() => loadBooks())
+        bookService.remove(bookId)
+            .then(() => {
+                loadBooks()
+                showSuccessMsg(`Book ${bookId} removed`)
+            })
+            .catch(() => {
+                showErrorMsg(`Error Book ${bookId} Not found`)
+            })
+
     }
 
     if (!books) return <div className="loader">

@@ -1,6 +1,7 @@
 const { NavLink } = ReactRouterDOM
 const { Link } = ReactRouterDOM
 
+import { eventBus, showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 export function AppHeader() {
 
@@ -14,7 +15,11 @@ export function AppHeader() {
                 <span> | </span>
                 <NavLink to='/book'>Books</NavLink>
                 <span> | </span>
-                <button onClick={() => localStorage.clear()}>Clear LocalStorage</button>
+                <button onClick={() => {
+                    localStorage.clear()
+                    showSuccessMsg('Storage Cleared')
+                    window.location.reload()
+                }}>Clear LocalStorage</button>
             </nav >
         </section >
     </header >
