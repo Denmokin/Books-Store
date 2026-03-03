@@ -5,12 +5,11 @@ import { bookService } from "../services/book.service.js"
 import { eventBus, showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 
-export function BookEdit() {
+export function BookAdd() {
 
-    const [book, setBook] = useState(null)
+    const [book, setBook] = useState(bookService.getEmptyBook)
     const params = useParams()
     const navigate = useNavigate()
-    const location = useLocation()
 
     useEffect(() => {
         if (params.id) {
@@ -18,12 +17,6 @@ export function BookEdit() {
                 .then(setBook)
         }
     }, [])
-
-    function toPage({ state: { page } }) {
-        if (page === 'book') return `/book`
-        else if (page === 'bookDetails') return `/book/${book.id}`
-        else return
-    }
 
     function handleChange({ target }) {
         const { name: prop, type } = target
@@ -57,18 +50,14 @@ export function BookEdit() {
         ev.preventDefault()
         bookService.save(book)
             .then(() => {
-                navigate(pageNav)
-                showSuccessMsg(`Book ${book.id} Saved`)
+                navigate(`/book`)
+                // showSuccessMsg(`Book ${book.id} Saved`)
             })
     }
 
     if (!book) return <div className="loader">
         <img src="./assets/img/loader.svg" alt="A loader." />
     </div>
-
-    const pageNav = toPage(location)
-
-
 
     const {
         title,
@@ -103,28 +92,28 @@ export function BookEdit() {
             type="checkbox"
             name="listPrice.isOnSale"
         />
-        <label htmlFor="pageCount">On sale?</label>
+        <label htmlFor="pageCount">Page Count</label>
         <input
             value={pageCount}
             onChange={handleChange}
             type="number"
             name="pageCount"
         />
-        <label htmlFor="author">On sale?</label>
+        <label htmlFor="author">Author</label>
         <input
             value={author}
             onChange={handleChange}
             type="text"
             name="author"
         />
-        <label htmlFor="thumbnail">On sale?</label>
+        <label htmlFor="thumbnail">Thumbnail</label>
         <input
             value={thumbnail}
             onChange={handleChange}
             type="text"
             name="thumbnail"
         />
-        <label htmlFor="description">On sale?</label>
+        <label htmlFor="description">Description</label>
         <textarea
             value={description}
             onChange={handleChange}
@@ -134,9 +123,10 @@ export function BookEdit() {
 
         <div className='book-edit__buttons' >
             <button className='btn'> Save</button>
-            <Link to={pageNav}><button type='button' className='btn'>Back</button></Link>
+            <Link to={`/book`}><button type='button' className='btn'>Back</button></Link>
         </div>
     </form>
+
 
 }
 

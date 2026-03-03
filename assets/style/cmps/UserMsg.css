@@ -2,7 +2,7 @@
     z-index: 999;
     position: fixed;
     bottom: 1em;
-    right: 1em;
+    left: 1em;
 
     font-weight: bold;
     color: var(--clr1);

@@ -1,5 +1,7 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
+import { eventBus, showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
+
 
 const BOOKS_KEY = 'Books_DB'
 utilService.loadFromStorage(BOOKS_KEY) || _createBooks(20)
@@ -10,6 +12,7 @@ export const bookService = {
     remove,
     save,
     getDefaultFilter,
+    getEmptyBook,
 }
 
 function query(filterBy = {}) {
@@ -49,6 +52,7 @@ function save(book) {
     }
     else {
         return storageService.post(BOOKS_KEY, book)
+            .then(book => showSuccessMsg(`Book ${book.id} Added`))
     }
 }
 
@@ -66,9 +70,7 @@ function _createBooks(amount) {
             id: utilService.makeId(),
             title: utilService.makeBookTitle(),
             subtitle: utilService.makeLorem(5),
-            authors: [
-                utilService.makeAuthor()
-            ],
+            author: utilService.makeAuthor(),
             publishedDate: utilService.getRandomIntInclusive(1950, 2024),
             description: utilService.makeLorem(100),
             pageCount: utilService.getRandomIntInclusive(20, 600),
@@ -84,6 +86,27 @@ function _createBooks(amount) {
         books.push(book)
     }
     utilService.saveToStorage(BOOKS_KEY, books)
+}
+
+function getEmptyBook() {
+    const currency = ['EUR', 'USD', 'ILS']
+    const book = {
+        id: '',
+        title: '',
+        author: '',
+        publishedDate: '',
+        description: '',
+        pageCount: '',
+        categories: '',
+        thumbnail: '',
+        language: '',
+        listPrice: {
+            amount: '',
+            currencyCode: currency[utilService.getRandomIntInclusive(0, 2)],
+            isOnSale: Math.random() > 0.7
+        }
+    }
+    return book
 }
 
 

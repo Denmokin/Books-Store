@@ -48,11 +48,10 @@ export function BookDetails() {
 
             <div className='book-details__headings'>
                 <h2 className='book-details__title'>{utilService.toCap(book.title)}</h2>
-                <p className='book-details__subtitle'>{utilService.toCap(book.subtitle)}</p>
             </div>
 
             <p className={'book-details__author'}>
-                By <span className='book-author'>{book.authors[0]}</span>
+                By <span className='book-author'>{book.author}</span>
             </p>
 
 

@@ -1,0 +1,21 @@
+.book-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 100%;
+    padding: 1rem 5rem;
+    border: 1px solid var(--clr2);
+
+    label {
+        font-weight: 600;
+    }
+
+    input {
+        width: 20rem;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+}
