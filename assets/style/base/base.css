@@ -1,3 +1,7 @@
+#root{
+    position: relative;
+}
+
 .btn {
     color: var(--clr0);
     font-size: 1rem;
@@ -55,9 +59,4 @@
             transform: scale(0.95);
         }
     }
-}
-
-main {
-    margin-block-start: 1rem;
-    margin-block-end: 5rem;
 }

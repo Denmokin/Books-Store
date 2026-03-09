@@ -1,0 +1,37 @@
+.global-modal {
+    position: relative;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    gap: 2rem;
+
+    padding: 5rem;
+    border: 1px solid var(--clr2);
+
+    background-color: var(--clr0);
+
+    .close-modal {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    /* &.hidden {
+        display: none;
+    } */
+}
+
+.modal-bg {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background-color: #0b48ff54;
+    z-index: 1000;
+}

@@ -3,16 +3,33 @@ const { Link, useParams, useNavigate } = ReactRouterDOM
 
 import { utilService } from "../services/util.service.js"
 import { bookService } from "../services/book.service.js"
+import { BookReviewList } from "../cmps/BookReviews/BookReviewList.jsx"
+import { OpenModal } from "../cmps/OpenModal.jsx"
+import { BookReviewModalContent } from "../cmps/BookReviews/BookReviewModalContent.jsx"
+
 
 export function BookDetails() {
     const [isLongDesc, setIsLongDesc] = useState(false)
     const [book, setBook] = useState(null)
     const [noBook, setNoBook] = useState(false)
+    const [isShown, setIsShown] = useState(false)
+
+
 
     const params = useParams()
     const navigate = useNavigate()
 
-     useEffect(() => {
+    function onOpenModal() {
+        console.log('Modal has opened...')
+        setIsShown(true)
+    }
+
+    function onCloseModal() {
+        console.log('Modal has closed...')
+        setIsShown(false)
+    }
+
+    useEffect(() => {
         bookService.get(params.id)
             .then(setBook)
             .catch(() => setNoBook(true))
@@ -38,8 +55,14 @@ export function BookDetails() {
     const linkText = isLongDesc ? 'Read Less' : 'Read More'
 
     return <article className='book-selected'>
-        <img className='book-selected__thumbnail' src={book.thumbnail} />
 
+        <OpenModal
+            isShown={isShown}
+            onClose={onCloseModal}>
+            {<BookReviewModalContent book={book} />}
+        </OpenModal>
+
+        <img className='book-selected__thumbnail' src={book.thumbnail} />
         <div className="book-details">
             <div className='book-details__tags'>
                 <div className='book-details__tag'>{_publishDate(book.publishedDate)}</div>
@@ -88,6 +111,8 @@ export function BookDetails() {
                 </div>
             </div>
         </div>
+        <BookReviewList book={book} openModal={onOpenModal} />
+
         {book.listPrice.isOnSale && <div className='book-selected__on-sale-ribbon'>ON SALE</div>}
     </article>
 }

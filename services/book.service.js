@@ -77,11 +77,13 @@ function _createBooks(amount) {
             categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
             thumbnail: `https://www.coding-academy.org/books-photos/${i + 1}.jpg`,
             language: "en",
+            reviews: _createReviews(),
             listPrice: {
                 amount: utilService.getRandomIntInclusive(30, 200),
                 currencyCode: currency[utilService.getRandomIntInclusive(0, 2)],
                 isOnSale: Math.random() > 0.7
-            }
+            },
+
         }
         books.push(book)
     }
@@ -134,4 +136,21 @@ function _setNextPrevBookId(book) {
         book.prevBookId = prevBook.id
         return book
     })
+}
+
+
+
+function _createReviews() {
+    const amount = utilService.getRandomIntInclusive(1, 5)
+    const reviews = []
+    for (let i = 0; i < amount; i++) {
+        const review = {
+            id: utilService.makeId(),
+            name: utilService.makeAuthor(),
+            comment: utilService.makeLorem(50),
+            rating: utilService.getRandomIntInclusive(1, 10)
+        }
+        reviews.push(review)
+    }
+    return reviews
 }

@@ -7,10 +7,15 @@
 @import "base/layout.css";
 @import "base/base.css";
 
+/* Pages */
+@import "pages/BookIndex.css";
+@import "pages/BookDetails.css";
+
 /* Components */
 @import "cmps/Home.css";
 @import "cmps/AppHeader.css";
 @import "cmps/UserMsg.css";
-@import "cmps/BookIndex.css";
 @import "cmps/BookEdit.css";
 @import "cmps/BookFilter.css";
+@import "cmps/BookReviews.css";
+@import "cmps/OpenModal.css";

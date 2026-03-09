@@ -1,8 +1,8 @@
 const { useState, useEffect } = React
 
 import { bookService } from "../services/book.service.js"
-import { BookList } from "../cmps/BookList.jsx"
-import { BookFilter } from "../cmps/BookFilter.jsx"
+import { BookList } from "../cmps/book/BookList.jsx"
+import { BookFilter } from "../cmps/book/BookFilter.jsx"
 import { BookDetails } from "./BookDetails.jsx"
 import { FloatAddButton } from "../cmps/FloatAddButton.jsx"
 import { eventBus, showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"

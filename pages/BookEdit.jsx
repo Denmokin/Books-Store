@@ -103,28 +103,28 @@ export function BookEdit() {
             type="checkbox"
             name="listPrice.isOnSale"
         />
-        <label htmlFor="pageCount">On sale?</label>
+        <label htmlFor="pageCount">Page Count</label>
         <input
             value={pageCount}
             onChange={handleChange}
             type="number"
             name="pageCount"
         />
-        <label htmlFor="author">On sale?</label>
+        <label htmlFor="author">Author</label>
         <input
             value={author}
             onChange={handleChange}
             type="text"
             name="author"
         />
-        <label htmlFor="thumbnail">On sale?</label>
+        <label htmlFor="thumbnail">Thumbnail</label>
         <input
             value={thumbnail}
             onChange={handleChange}
             type="text"
             name="thumbnail"
         />
-        <label htmlFor="description">On sale?</label>
+        <label htmlFor="description">Description</label>
         <textarea
             value={description}
             onChange={handleChange}
